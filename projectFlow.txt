@@ -1,0 +1,60 @@
+src/
+│
+├── app/
+│   ├── store.js                  → Redux store (if using Redux)
+│   ├── App.jsx
+│   ├── routes.jsx
+│
+├── features/
+│   ├── auth/
+│   │   ├── api.js
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── authSlice.js
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── bus/
+│   │   ├── api.js
+│   │   ├── SearchBus.jsx
+│   │   ├── BusList.jsx
+│   │   ├── BusCard.jsx
+│   │   └── busSlice.js
+│   │
+│   ├── booking/
+│   │   ├── api.js
+│   │   ├── SeatSelection.jsx
+│   │   ├── Payment.jsx
+│   │   ├── BookingHistory.jsx
+│   │   └── bookingSlice.js
+│   │
+│   ├── admin/
+│   │   ├── AdminDashboard.jsx
+│   │   ├── AddBus.jsx
+│   │   ├── ManageRoutes.jsx
+│   │   └── ManageBookings.jsx
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── Loader.jsx
+│   ├── Button.jsx
+│   └── Input.jsx
+│
+├── layouts/
+│   ├── UserLayout.jsx
+│   ├── AdminLayout.jsx
+│
+├── services/
+│   └── axiosInstance.js
+│
+├── hooks/
+│   ├── useAuth.js
+│   ├── useDebounce.js
+│
+├── utils/
+│   ├── formatDate.js
+│   ├── calculateFare.js
+│
+├── assets/
+│
+└── main.jsx
