@@ -1,10 +1,32 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import { loginUser } from "./api";
+import api from "../../services/axiosInstance";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const {register, handleSubmit } = useForm();
+  const {login, setUser} = useAuth();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+      try{
+        const res = await loginUser(data);
+        login(res.data.token);
+
+        const profile = await api.get("/user/profile");
+        setUser(profile.data);
+        console.log(profile.data.role)
+
+        if (profile.data.role === "ADMIN") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+
+      } catch(error){
+        console.log(error);
+      }
   };
 
   return (
