@@ -1,47 +1,54 @@
-import {useForm} from "react-hook-form"
-import {useNavigate} from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const SearchBus = () => {
+  const navigate = useNavigate();
 
-    const{register, handleSubmit} = useForm();
-    const navigate = useNavigate();
+  const [source, setSource] = useState("");
+  const [destination, setDestination] = useState("");
+  const [date, setDate] = useState("");
 
-    const onSubmit = (data) =>{
-        console.log("Search data", data);
-        navigate(
-          `/routes/search?source=${data.from}&destination=${data.to}`
-        );
-    }
-    return (
-      <div className="max-w-xl mx-auto bg-white p-6 shadow rounded">
-        <h2 className="text-2xl font-bold mb-4">Search Bus</h2>
-  
-        <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
-          <input
-            {...register("from", {required : true})}
-            placeholder="From"
-            className="border p-2 rounded"
-          />
-  
-          <input
-          {...register("to", {required : true})}
-            placeholder="To"
-            className="border p-2 rounded"
-          />
-  
-          <input
-            {...register("date", {required : true})}
-            type="date"
-            className="border p-2 rounded"
-          />
-  
-          <button className="bg-green-600 text-white p-2 rounded">
-            Search
-          </button>
-        </form>
-      </div>
+  const handleSearch = () => {
+    navigate(
+      `/buses?source=${source}&destination=${destination}&date=${date}`
     );
   };
-  
-  export default SearchBus;
+
+  return (
+    <div className="max-w-xl mx-auto bg-white p-6 shadow rounded">
+      <h2 className="text-2xl font-bold mb-4">Search Bus</h2>
+
+      <div className="grid gap-4">
+        <input
+          placeholder="From"
+          value={source}
+          onChange={(e) => setSource(e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <input
+          placeholder="To"
+          value={destination}
+          onChange={(e) => setDestination(e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="border p-2 rounded"
+        />
+
+        <button
+          onClick={handleSearch}
+          className="bg-green-600 text-white p-2 rounded"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SearchBus;

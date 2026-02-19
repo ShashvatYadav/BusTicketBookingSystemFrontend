@@ -12,25 +12,28 @@ import ViewBuses from "../features/admin/ViewBuses";
 
 export const router = createBrowserRouter([
     {
-        path : "/",
-        element : <UserLayout/>,
-        children : [
-            {index : true, element : <SearchBus/>},
-            {path : "login", element : <Login/>},
-            {
-                path : "register", element : <Register/>
-            },
-            { path : "seat/:busId", element : <SeatSelection/>},
-            { path : "routes/search", element : <BusList/>},
-            { path : "admin", 
-                element : (
-                    <ProtectedRoute>
-                        <AdminDashboard/>
-                    </ProtectedRoute>
-                )
-            },
-            {path : "admin/add-bus", element : <AddBus/>},
-            {path : "admin/buses", element : <ViewBuses/>}
-        ],
+      path: "/",
+      element: <UserLayout />,
+      children: [
+        { index: true, element: <SearchBus /> },
+        { path: "login", element: <Login /> },
+        { path: "register", element: <Register /> },
+  
+        { path: "buses", element: <BusList /> },   // ✅ fixed
+  
+        { path: "seat/:busId", element: <SeatSelection /> },
+  
+        {
+          path: "admin",
+          element: (
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          ),
+        },
+  
+        { path: "admin/add-bus", element: <AddBus /> },
+        { path: "admin/buses", element: <ViewBuses /> },
+      ],
     },
-])
+  ]);
