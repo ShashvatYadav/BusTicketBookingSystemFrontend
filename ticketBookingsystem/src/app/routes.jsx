@@ -9,6 +9,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import AdminDashboard from "../features/admin/AdminBashboard";
 import AddBus from "../features/admin/AddBus";
 import ViewBuses from "../features/admin/ViewBuses";
+import ManageRoutes from "../features/admin/ManageRoutes";
+import EditRoute from "../features/admin/EditRoute";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +36,8 @@ export const router = createBrowserRouter([
   
         { path: "admin/add-bus", element: <AddBus /> },
         { path: "admin/buses", element: <ViewBuses /> },
+        {path : "admin/routes", element : <ManageRoutes/>},
+        {path : "admin/edit-route/:id", element : <EditRoute/>}
       ],
     },
   ]);
