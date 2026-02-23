@@ -8,15 +8,19 @@ const SearchBus = () => {
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
 
+  const today = new Date().toISOString().split("T")[0];
+
   const handleSearch = () => {
+    if (!source || !destination || !date) return;
+
     navigate(
       `/buses?source=${source}&destination=${destination}&date=${date}`
     );
   };
 
   return (
-    <div className="max-w-xl mx-auto bg-white p-6 shadow rounded">
-      <h2 className="text-2xl font-bold mb-4">Search Bus</h2>
+    <div className="max-w-xl mx-auto bg-white p-6 shadow rounded mt-10">
+      <h2 className="text-2xl font-bold mb-6 text-center">Search Bus</h2>
 
       <div className="grid gap-4">
         <input
@@ -35,14 +39,20 @@ const SearchBus = () => {
 
         <input
           type="date"
+          min={today}
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="border p-2 rounded"
         />
 
         <button
+          disabled={!source || !destination || !date}
           onClick={handleSearch}
-          className="bg-green-600 text-white p-2 rounded"
+          className={`p-2 rounded text-white ${
+            !source || !destination || !date
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-green-600 hover:bg-green-700"
+          }`}
         >
           Search
         </button>

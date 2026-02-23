@@ -11,6 +11,8 @@ import AddBus from "../features/admin/AddBus";
 import ViewBuses from "../features/admin/ViewBuses";
 import ManageRoutes from "../features/admin/ManageRoutes";
 import EditRoute from "../features/admin/EditRoute";
+import Payment from "../features/booking/Payment";
+import BookingHistory from "../features/booking/BookingHistory";
 
 export const router = createBrowserRouter([
     {
@@ -21,9 +23,11 @@ export const router = createBrowserRouter([
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
   
-        { path: "buses", element: <BusList /> },   // ✅ fixed
+        { path: "buses", element: <BusList /> },
   
         { path: "seat/:busId", element: <SeatSelection /> },
+        {path : "payment", element : <Payment/>},
+        {path : "my-bookings", element : <BookingHistory/>},
   
         {
           path: "admin",
