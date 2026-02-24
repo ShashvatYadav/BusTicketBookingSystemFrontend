@@ -1,11 +1,23 @@
-import React, { useState, useRef} from "react";
+import React, { useState, useRef, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef();
+  const dropdownRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if(dropdownRef.current && !dropdownRef.current.cotains(e.target)){
+        setOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [])
   return (
     <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
       <Link to="/" className="font-bold text-xl">
