@@ -5,10 +5,10 @@ import { useAuth } from "../context/AuthContext";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef();
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if(dropdownRef.current && !dropdownRef.current.cotains(e.target)){
+      if(dropdownRef.current && !dropdownRef.current.contains(e.target)){
         setOpen(false);
       }
     };
